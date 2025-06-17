@@ -1,0 +1,37 @@
+version: '3.8' # Versi Docker Compose yang digunakan
+
+services:
+  # Service untuk aplikasi web Python kita (backend)
+  web:
+    build:
+      context: . # Konteks build adalah direktori saat ini (petshop-app/)
+      dockerfile: Dockerfile # Gunakan Dockerfile yang sudah kita buat
+    ports:
+      - "8000:5000" # Map port 8000 di host Anda ke port 5000 di dalam container 'web' (aplikasi Flask)
+    volumes:
+      - .:/app # Mounting volume: sinkronkan kode lokal Anda ke dalam container.
+               # Ini penting untuk Poin 6: Aplikasi bisa diubah langsung dan hasilnya langsung terlihat.
+    env_file:
+      - .env # Muat variabel lingkungan dari file .env lokal Anda (Poin 7)
+    depends_on:
+      - db # Pastikan service 'db' (database) dimulai sebelum service 'web'
+
+  # Service untuk database MySQL
+  db:
+    image: mysql:8.0 # Gunakan image resmi MySQL versi 8.0
+    ports:
+      - "3307:3306" # (Opsional) Map port 3306 di host ke port 3306 di container 'db'.
+                   # Berguna jika Anda ingin mengakses DB dari tool lokal (DBeaver/Workbench).
+    environment: # Variabel lingkungan untuk konfigurasi MySQL.
+                 # Ini yang akan digunakan MySQL untuk membuat DB dan user.
+      MYSQL_ROOT_PASSWORD: supersecretrootpassword # Kata sandi root MySQL. GANTI INI!
+      MYSQL_DATABASE: ${DATABASE_NAME}             # Ambil dari .env
+      MYSQL_USER: ${DATABASE_USER}                 # Ambil dari .env
+      MYSQL_PASSWORD: ${DATABASE_PASSWORD}         # Ambil dari .env
+    volumes:
+      - db_data:/var/lib/mysql # Persistent volume untuk data database (Poin 4)
+
+# Definisi volume Docker
+volumes:
+  db_data: # Ini adalah named volume. Data MySQL akan disimpan di sini di host Anda,
+           # sehingga tidak hilang saat container 'db' di-stop/dihapus.
