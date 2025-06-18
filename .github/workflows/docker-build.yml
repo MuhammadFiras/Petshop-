@@ -3,7 +3,7 @@ name: Build and Push Docker Image
 on:
   push:
     branches:
-      - main # Workflow akan berjalan setiap kali ada push ke branch 'main'
+      - main # Workflow akan berjalan setiap kali ada push ke branch 'main' - updated comment
 
 jobs:
   build:
@@ -11,18 +11,18 @@ jobs:
 
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v4 # Mengambil kode dari repositori Anda
+        uses: actions/checkout@v4
 
       - name: Log in to Docker Hub
         uses: docker/login-action@v3
         with:
-          username: ${{ secrets.DOCKER_USERNAME }} # Mengambil username dari GitHub Secrets
-          password: ${{ secrets.DOCKER_TOKEN }}    # Mengambil token dari GitHub Secrets
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_TOKEN }}
 
       - name: Build and Push Docker Image
         uses: docker/build-push-action@v5
         with:
-          context: . # Direktori konteks build Docker
-          file: ./Dockerfile # Lokasi Dockerfile Anda
-          push: true # Dorong image ke Docker Hub
-          tags: ${{ secrets.FIRAS17204 }}/petshop-app:latest # Tag image Anda. Ganti DOCKER_USERNAME!
+          context: .
+          file: ./Dockerfile
+          push: true
+          tags: ${{ secrets.DOCKER_USERNAME }}/petshop-app:latest
