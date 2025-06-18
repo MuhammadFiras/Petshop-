@@ -25,4 +25,4 @@ jobs:
           context: . # Direktori konteks build Docker
           file: ./Dockerfile # Lokasi Dockerfile Anda
           push: true # Dorong image ke Docker Hub
-          tags: ${{ secrets.DOCKER_USERNAME }}/petshop-app:latest # Tag image Anda. Ganti DOCKER_USERNAME!
+          tags: ${{ secrets.FIRAS17204 }}/petshop-app:latest # Tag image Anda. Ganti DOCKER_USERNAME!
