@@ -2,23 +2,21 @@ from flask import Flask, render_template, request, redirect, url_for, flash
 import os
 import mysql.connector
 from dotenv import load_dotenv
-import time # Tambahkan baris ini untuk import modul time
+import time 
 
-load_dotenv() # Memuat variabel lingkungan dari file .env
+load_dotenv() 
 
 app = Flask(__name__)
-app.secret_key = 'supersecretkey_petshop_app' # Ganti dengan kunci rahasia yang lebih kuat
+app.secret_key = 'supersecretkey_petshop_app' 
 
-# Konfigurasi Database dari .env
 DB_HOST = os.getenv('DATABASE_HOST')
 DB_USER = os.getenv('DATABASE_USER')
 DB_PASSWORD = os.getenv('DATABASE_PASSWORD')
 DB_NAME = os.getenv('DATABASE_NAME')
 
 def get_db_connection():
-    # Tambahkan retry logic di sini
-    max_retries = 10 # Jumlah percobaan maksimum
-    retry_delay = 5  # Penundaan (detik) antar percobaan
+    max_retries = 10 
+    retry_delay = 5 
     for i in range(max_retries):
         try:
             conn = mysql.connector.connect(
@@ -37,9 +35,9 @@ def get_db_connection():
                 print(f"Gagal koneksi ke database setelah {max_retries} percobaan: {err}")
                 return None
 
-# Inisialisasi database (akan dijalankan saat startup pertama kali)
+# Inisialisasi database (pas startup pertama kali aja)
 def init_db():
-    conn = get_db_connection() # Panggil fungsi koneksi dengan retry logic
+    conn = get_db_connection() 
     if conn:
         cursor = conn.cursor()
         try:
@@ -62,8 +60,14 @@ def init_db():
     else:
         print("Tidak dapat membuat tabel karena koneksi database gagal.")
 
-# Rute utama - Menampilkan daftar item toko peliharaan
+# Route welcome
 @app.route('/')
+def welcome() :
+    return render_template('welcome.html')
+
+
+# Rute utama Index- Menampilkan daftar item toko peliharaan
+@app.route('/inventaris')
 def index():
     conn = get_db_connection()
     if conn is None:
@@ -77,7 +81,7 @@ def index():
     conn.close()
     return render_template('index.html', items=items)
 
-# Rute untuk menambah item baru
+# Rute nambah item baru
 @app.route('/add', methods=('GET', 'POST'))
 def add_item():
     if request.method == 'POST':
@@ -110,7 +114,7 @@ def add_item():
                 flash('Stok harus berupa angka bulat dan Harga harus berupa angka desimal!', 'error')
     return render_template('add_item.html')
 
-# Rute untuk mengedit item
+# Rute edit item
 @app.route('/edit/<int:id>', methods=('GET', 'POST'))
 def edit_item(id):
     conn = get_db_connection()
@@ -156,7 +160,7 @@ def edit_item(id):
         return redirect(url_for('index'))
     return render_template('edit_item.html', item=item)
 
-# Rute untuk menghapus item
+# Rute hapus item
 @app.route('/delete/<int:id>', methods=('POST',))
 def delete_item(id):
     conn = get_db_connection()
@@ -172,10 +176,9 @@ def delete_item(id):
     return redirect(url_for('index'))
 
 if __name__ == '__main__':
-    init_db() # Pastikan tabel dibuat saat aplikasi dijalankan
+    init_db() 
     app.run(debug=True, host='0.0.0.0', port=5000)
 
-# Pastikan ini ada di akhir file Anda
 if __name__ == '__main__':
-    init_db() # Pastikan tabel dibuat saat aplikasi dijalankan
+    init_db() 
     app.run(debug=True, host='0.0.0.0', port=5000)

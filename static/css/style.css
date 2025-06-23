@@ -1,0 +1,128 @@
+/* style.css */
+
+:root {
+    --primary-color: #0d6efd;   
+    --secondary-color: #6c757d; 
+    --success-color: #198754;  
+    --danger-color: #dc3545;    
+    --info-color: #0dcaf0;      
+    --bg-light: #f8f9fa;        
+    --text-dark: #212529;    
+    --text-light: #fff;
+    --border-color: #dee2e6;   
+    --shadow-light: rgba(0, 0, 0, 0.1);
+    --welcome-gradient-start: #a8dadc;
+    --welcome-gradient-end: #457b9d;
+    --petshop-purple: #6f42c1;
+    --petshop-yellow: #ffc107;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg-light);
+    color: var(--text-dark);
+    line-height: 1.6;
+    padding-top: 20px; 
+    padding-bottom: 20px; 
+}
+
+.container-custom {
+    background-color: var(--text-light);
+    padding: 30px;
+    border-radius: 0.75rem; 
+    box-shadow: 0 0.5rem 1rem var(--shadow-light);
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+header h1 {
+    font-size: 2.8em;
+    color: #6f42c1; 
+    margin-bottom: 10px;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+}
+
+header p {
+    font-size: 1.1em;
+    color: var(--secondary-color);
+}
+
+.flash-messages .alert {
+    margin-bottom: 1.5rem;
+}
+
+.btn-custom-add {
+    background-color: var(--success-color);
+    border-color: var(--success-color);
+    color: var(--text-light);
+    font-weight: 600;
+    transition: all 0.2s ease-in-out;
+}
+
+.btn-custom-add:hover {
+    background-color: #157347; 
+    border-color: #146c43;
+    transform: translateY(-1px);
+    box-shadow: 0 0.25rem 0.5rem rgba(0,0,0,0.1);
+}
+
+.btn-custom-add:active {
+    transform: translateY(0);
+}
+
+.table-responsive {
+    margin-top: 25px;
+}
+
+.table thead th {
+    background-color: var(--bg-light);
+    font-weight: 600;
+    color: var(--text-dark);
+    text-transform: uppercase;
+    font-size: 0.9em;
+    letter-spacing: 0.5px;
+}
+
+.table tbody tr:hover {
+    background-color: #eef7f4; 
+}
+
+.table tbody td {
+    vertical-align: middle;
+}
+
+.table .btn-info {
+    font-size: 0.9em;
+    padding: 0.375rem 0.75rem;
+}
+.table .btn-danger {
+    font-size: 0.9em;
+    padding: 0.375rem 0.75rem;
+    margin-left: 0.5rem;
+}
+
+.no-items {
+    text-align: center;
+    padding: 30px;
+    font-style: italic;
+    color: var(--secondary-color);
+    background-color: #fcfcfc;
+    border-radius: 0.5rem;
+    margin-top: 20px;
+}
+
+.header-icon {
+    font-size: 0.8em;
+    vertical-align: middle;
+    margin: 0 8px;
+    color: #ffc107; 
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}

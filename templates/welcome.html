@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selamat Datang di Petshop Firas!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            font-family: 'Poppins', sans-serif;
+            color: #fff; /* Ubah warna teks utama menjadi putih agar kontras dengan gambar gelap */
+            text-align: center;
+
+            /* Gaya untuk background image */
+            background-image: url("{{ url_for('static', filename='img/rick_astley.jpg') }}"); /* GANTI 'background.jpg' dengan nama file gambar Anda */
+            background-size: cover; /* Menutupi seluruh area */
+            background-position: center; /* Memusatkan gambar */
+            background-repeat: no-repeat; /* Jangan ulangi gambar */
+            background-attachment: fixed; /* Gambar tetap di tempat saat scroll */
+            overflow-y: auto; /* Izinkan scroll jika konten melebihi layar */
+        }
+        .welcome-card {
+            /* Transparansi: rgba(R, G, B, Alpha) */
+            background-color: rgba(255, 255, 255, 0.75); /* Putih dengan transparansi 75% */
+            padding: 40px;
+            border-radius: 15px;
+            /* Kurangi bayangan agar gambar di belakang lebih terlihat */
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+            max-width: 600px;
+            width: 100%;
+            color: var(--text-dark); /* Mengembalikan warna teks di dalam kartu */
+            position: relative;
+            overflow: hidden;
+            border: 2px solid #6f42c1;
+        }
+        .welcome-card h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: #6f42c1; /* Ungu ceria */
+            font-weight: 700;
+        }
+        .welcome-card p {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+        .welcome-card .btn {
+            padding: 15px 30px;
+            font-size: 1.3em;
+            border-radius: 50px; /* Tombol bulat */
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        .welcome-card .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+        .icon-large {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: #ffc107; /* Kuning cerah */
+        }
+        /* Pattern kaki hewan - bisa disesuaikan atau dihapus jika tidak cocok dengan gambar */
+        .paw-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"><circle cx="5" cy="5" r="2" fill="%23e0e0e0" opacity="0.1"/><circle cx="15" cy="5" r="2" fill="%23e0e0e0" opacity="0.1"/><circle cx="10" cy="15" r="2" fill="%23e0e0e0" opacity="0.1"/><path d="M7 10 L13 10 Q10 17 7 10 Z" fill="%23e0e0e0" opacity="0.1"/></svg>');
+            background-size: 40px;
+            opacity: 0.3; /* Sedikit lebih terlihat karena background transparan */
+            z-index: 0;
+        }
+        .content-wrapper {
+            position: relative;
+            z-index: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="welcome-card">
+        <div class="paw-pattern"></div>
+        <div class="content-wrapper">
+            <i class="fas fa-heartbeat icon-large"></i>
+            <h1>Selamat Datang di <br>Petshop Firas!</h1>
+            <p>Solusi terbaik untuk kebutuhan inventaris hewan peliharaan dan produknya. Kelola stok dengan mudah dan efisien.</p>
+            <a href="{{ url_for('index') }}" class="btn btn-primary btn-lg">
+                <i class="fas fa-list me-2"></i> Mulai Kelola Inventaris
+            </a>
+            <p class="mt-4 text-muted"><small>Dibangun dengan ❤️ untuk UAS ASJ</small></p>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>

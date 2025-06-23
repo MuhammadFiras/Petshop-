@@ -1,4 +1,4 @@
-version: '3.8' # Versi Docker Compose yang digunakan
+version: '4.3' 
 
 services:
   # Service untuk aplikasi web Python kita (backend)
@@ -20,7 +20,7 @@ services:
   db:
     image: mysql:8.0 # Gunakan image resmi MySQL versi 8.0
     ports:
-      - "3307:3306" # (Opsional) Map port 3306 di host ke port 3306 di container 'db'.
+      - "3307:3306" # (Opsional) Map port 3307 di host ke port 3306 di container 'db'.
                    # Berguna jika Anda ingin mengakses DB dari tool lokal (DBeaver/Workbench).
     environment: # Variabel lingkungan untuk konfigurasi MySQL.
                  # Ini yang akan digunakan MySQL untuk membuat DB dan user.
