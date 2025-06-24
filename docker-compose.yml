@@ -1,20 +1,19 @@
-version: '4.3' 
+version: '3.8'
 
 services:
   # Service untuk aplikasi web Python kita (backend)
   web:
     build:
-      context: . 
-      dockerfile: Dockerfile 
+      context: .
+      dockerfile: Dockerfile
     ports:
-      - "8000:5000" 
+      - "8000:5000"
     volumes:
-      - .:/app 
-               
+      - .:/app
     env_file:
-      - .env 
+      - .env
     depends_on:
-      - db 
+      - db
 
   # Service untuk database MySQL
   db:
@@ -22,13 +21,23 @@ services:
     ports:
       - "3307:3306" 
     environment:
-      MYSQL_ROOT_PASSWORD: supersecretrootpassword # Kata sandi root MySQL. Ga ada isinya
-      MYSQL_DATABASE: ${DATABASE_NAME}             # Ambil dari .env
-      MYSQL_USER: ${DATABASE_USER}                 # sama jua
-      MYSQL_PASSWORD: ${DATABASE_PASSWORD}         
+      MYSQL_ROOT_PASSWORD: supersecretrootpassword
+      MYSQL_DATABASE: ${DATABASE_NAME}
+      MYSQL_USER: ${DATABASE_USER}
+      MYSQL_PASSWORD: ${DATABASE_PASSWORD}
     volumes:
-      - db_data:/var/lib/mysql 
+      - db_data:/var/lib/mysql
+
+  # Service untuk phpMyAdmin
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    ports:
+      - "8081:80" 
+    environment:
+      PMA_HOST: db 
+      MYSQL_ROOT_PASSWORD: supersecretrootpassword 
+    depends_on:
+      - db 
 
 volumes:
-  db_data: # Ini adalah named volume. Data MySQL nya disimpan di sini di host,
-           # supaya tidak hilang saat container 'db' di-stop/dihapus.
+  db_data:

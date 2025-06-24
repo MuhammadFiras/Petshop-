@@ -7,9 +7,9 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest # Jalankan job ini di lingkungan Ubuntu terbaru
+    runs-on: ubuntu-latest 
 
-    steps: #wililili
+    steps: 
       - name: Checkout Code
         uses: actions/checkout@v4
 
