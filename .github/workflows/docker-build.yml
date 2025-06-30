@@ -3,7 +3,7 @@ name: Build and Push Docker Image
 on:
   push:
     branches:
-      - main # Workflow akan berjalan setiap kali ada push ke branch 'main' - updated comment
+      - main 
 
 jobs:
   build:
